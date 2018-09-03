@@ -1,53 +1,94 @@
 package com.capgemini.day4;
 
 public class Employee {
-	    private int employeeId;
-		private String employeeName;
-		private String employeeAddress;
-		private double employeePhone;
+	 private int empId;
+		private String empName;
+		private double hra;
+		private double pf;
+		private double medical;
+		private double netSalary;
 		private double basicSalary;
-		private double salary;
+		private double grossSalary;
 		
-		private final double SPECIALALLOWANCE=250.80;
-		private final double HRA=1000.50;
+		private static final int PT=200;
 		
-		public Employee() {	
+		public Employee() {
+			
 		}
-		public Employee(int Id, String Name, String Address, double Phone) {
-			employeeId=Id;
-			employeeName=Name;
-			employeeAddress=Address;
-			employeePhone=Phone;
+
+		public Employee(int empId, String empName, double basicSalary, double medical) {
+			this.setBasicSalary(basicSalary);
+			this.setMedical(medical);
+			this.empId=empId;
+			this.empName=empName;
 		}
-		
-		public double calculateSalary() {
-			salary=basicSalary+(basicSalary*SPECIALALLOWANCE/100)+(basicSalary*HRA/100);
-			return salary;	
+
+
+
+		public double netSalaryCalculation() {
+			hra=0.5*basicSalary;
+			pf=0.12*basicSalary;
+			grossSalary=hra+basicSalary+medical;
+			netSalary=grossSalary-(pf+PT);
+			
+			return netSalary;
+			
 		}
-		
-		
-		public int getEmployeeId() {
-			return employeeId;
+		public void displayEmployeeDetails(int empId, String empName, double netSalary) {
+			System.out.println("EmployeeId" +empId+ "EmployeeName" +empName+ "Net Salary" +netSalary);
+			
 		}
-		public void setEmployeeId(int employeeId) {
-			this.employeeId = employeeId;
+
+		public double getBasicSalary() {
+			return basicSalary;
 		}
-		public String getEmployeeName() {
-			return employeeName;
+
+		public void setBasicSalary(double basicSalary) {
+			this.basicSalary = basicSalary;
 		}
-		public void setEmployeeName(String employeeName) {
-			this.employeeName = employeeName;
+
+		public double getGrossSalary() {
+			return grossSalary;
 		}
-		public String getEmployeeAddress() {
-			return employeeAddress;
+
+		public void setGrossSalary(double grossSalary) {
+			this.grossSalary = grossSalary;
 		}
-		public void setEmployeeAddress(String employeeAddress) {
-			this.employeeAddress = employeeAddress;
+
+		public double getMedical() {
+			return medical;
 		}
-		public double getEmployeePhone() {
-			return employeePhone;
+
+		public void setMedical(double medical) {
+			this.medical = medical;
 		}
-		public void setEmployeePhone(double employeePhone) {
-			this.employeePhone = employeePhone;
+
+		public double getHra() {
+			return hra;
 		}
+
+		public void setHra(double hra) {
+			this.hra = hra;
+		}
+
+		public double getPf() {
+			return pf;
+		}
+
+		public void setPf(double pf) {
+			this.pf = pf;
+		}
+
+		public static int getPt() {
+			return PT;
+		}
+
+		public double getNetSalary() {
+			return netSalary;
+		}
+
+		public void setNetSalary(double netSalary) {
+			this.netSalary = netSalary;
+		}
+
 }
